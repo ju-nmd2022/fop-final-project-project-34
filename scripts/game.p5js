@@ -12,7 +12,7 @@
   {
     "kind": 2,
     "language": "javascript",
-    "value": "function gameWindow(){\n    push();\n    stroke(150);\n    strokeWeight(1);\n    noFill();\n    rect(10, 10, width - 20, height - 20);\n    rect(20, 20, width - 40, height - 40);\n    pop();\n}\n\nfunction setup(){\n    createCanvas(600, 800);\n}\n\nfunction draw(){\n    background(20);\n    gameWindow();\n}"
+    "value": "function gameWindow(){\r\n    push();\r\n    noStroke();\r\n    fill(20);\r\n    rect(0, 0, width, 20);\r\n    rect(0, 0, 20, height);\r\n    rect(width - 20, 0, 20, height);\r\n    rect(0, height - 20, width, 20);\r\n    stroke(125);\r\n    strokeWeight(1);\r\n    noFill();\r\n    rect(10, 10, width - 20, height - 20);\r\n    rect(20, 20, width - 40, height - 40);\r\n    pop();\r\n}\r\n\r\nfunction setup(){\r\n    createCanvas(600, 800);\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    gameWindow();\r\n}"
   },
   {
     "kind": 1,
@@ -22,7 +22,7 @@
   {
     "kind": 2,
     "language": "javascript",
-    "value": "function setup(){\n    createCanvas(600, 800);\n}\n\nfunction draw(){\n    background(20);\n    gameWindow();\n}"
+    "value": "function setup(){\r\n    createCanvas(600, 800);\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    gameWindow();\r\n}"
   },
   {
     "kind": 1,
@@ -32,7 +32,7 @@
   {
     "kind": 2,
     "language": "javascript",
-    "value": "function drawCharacter (positionX, positionY){\npush ();\nstroke(100);\nnoFill();\ntranslate (positionX, height - positionY);\nellipse(0,0,40);\npop ();\n}\n\nfunction setup(){\n    createCanvas(600, 800);\n}\n\nfunction draw(){\n    background(20);\n    gameWindow();\n    drawCharacter(80,80);\n}"
+    "value": "function drawCharacter (positionX, positionY){\r\n    push();\r\n    stroke(150);\r\n    strokeWeight(2);\r\n    noFill();\r\n    translate (positionX, height - positionY);\r\n    ellipse(0,0,40);\r\n    pop();\r\n}\r\n\r\nfunction setup(){\r\n    createCanvas(600, 800);\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    gameWindow();\r\n    drawCharacter(80,80);\r\n}"
   },
   {
     "kind": 1,
@@ -42,6 +42,6 @@
   {
     "kind": 2,
     "language": "javascript",
-    "value": "class Platform {\nconstructor(x, y, gap){\n   this.centerX = x ;\n   this.centerY = y ;\nthis.gapWidth = gap;\n}\ndraw(){\n    push ();\n    translate (this.centerX, this.centerY);\n    stroke(200);\n    noFill();\n    rect (-this.gapWidth/2 - 600,- 15, 600, 16, 10);\n    rect (+this.gapWidth/2,- 15, 600, 16, 10);\n    pop ();  \n}\n}\n\nfunction drawPlatforms (){\nlet tp = new Platform(300, 400 ,90);\ntp.draw();\n}\n\n\nfunction setup(){\n    createCanvas(600, 800);\n}\n\nfunction draw(){\n    background(20);\n    gameWindow();\n    drawPlatforms();\n    drawCharacter(80,80);\n}"
+    "value": "let visiblePlatforms = [];\r\n\r\nclass Platform{\r\n    constructor(x, y, gap){\r\n        this.centerX = x ;\r\n        this.centerY = y ;\r\n        this.gapWidth = gap;\r\n    }\r\n    draw(){\r\n        push();\r\n        translate (this.centerX, this.centerY);\r\n        stroke(100);\r\n        noFill();\r\n        rect(-(this.gapWidth / 2) - 600, -20, 600, 40, 10);\r\n        rect(+(this.gapWidth / 2), -20, 600, 40, 10);\r\n        pop();  \r\n    }\r\n}\r\n\r\nfunction initializePlatforms(){\r\n    for(let iterator = 1; iterator <= 6; iterator++){\r\n        visiblePlatforms.push(new Platform(Math.floor(Math.random() * (width - 220)) + 100, Math.floor(height * iterator / 5) - 240, Math.floor(Math.random() * 40) + 80));\r\n    }\r\n}\r\n\r\nfunction drawPlatforms(){\r\n    for(let platform of visiblePlatforms){\r\n        platform.draw();\r\n    }\r\n}\r\n\r\nfunction setup(){\r\n    createCanvas(600, 800);\r\n    initializePlatforms();\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    drawPlatforms();\r\n    gameWindow();\r\n    drawCharacter(45,285);\r\n}"
   }
 ]
