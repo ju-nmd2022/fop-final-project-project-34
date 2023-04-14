@@ -2,7 +2,7 @@
   {
     "kind": 1,
     "language": "markdown",
-    "value": "**Core Steps**\r\n\r\n1. Create Game Window\r\n2. Create Enivronment\r\n3. Create Character\r\n4. Generate Platforms\r\n5. Get the Character and Platforms to Move\r\n6. Make the Character Jump\r\n7. Detect Collision with Platforms\r\n8. Implement Score System\r\n9. Create Start and End Screens"
+    "value": "**Core Steps**\r\n\r\n1. Create Game Window\r\n2. Create Enivronment\r\n3. Create Character\r\n4. Generate Platforms\r\n5. Get the Character to Move\r\n6. Make the Character Jump\r\n7. Detect Collision with Platforms\r\n8. Implement Score System\r\n9. Create Start and End Screens"
   },
   {
     "kind": 1,
