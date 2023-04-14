@@ -32,7 +32,7 @@
   {
     "kind": 2,
     "language": "javascript",
-    "value": "let mainCharacter;\r\n\r\nclass Character{\r\n    constructor(x, y){\r\n        this.positionX = x;\r\n        this.positionY = y;\r\n        this.velocity = 1.2;\r\n        this.acceleration = 0;\r\n    }\r\n    move(){\r\n        this.positionX += this.velocity;\r\n        if(this.positionX > width + 20){\r\n            this.positionX = 0;\r\n        }\r\n    }\r\n    accelerate(){\r\n        this.velocity += this.acceleration;\r\n    }\r\n    jump(){\r\n        \r\n    }\r\n    draw(){\r\n        push();\r\n        stroke(150);\r\n        strokeWeight(2);\r\n        noFill();\r\n        translate (this.positionX, height - this.positionY);\r\n        ellipse(0,0,40);\r\n        pop();\r\n    }\r\n}\r\n\r\nfunction initializeCharacter(){\r\n    mainCharacter = new Character(45, 285);\r\n}\r\n\r\nfunction drawCharacter (){\r\n    mainCharacter.draw();\r\n}\r\n\r\nfunction setup(){\r\n    createCanvas(600, 800);\r\n    initializeCharacter();\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    gameWindow();\r\n    drawCharacter();\r\n}"
+    "value": "let mainCharacter;\r\n\r\nclass Character{\r\n    constructor(x, y){\r\n        this.positionX = x;\r\n        this.positionY = y;\r\n        this.velocity = 5;\r\n        this.acceleration = 0;\r\n    }\r\n    move(){\r\n        this.positionX += this.velocity;\r\n        if(this.positionX > width + 20){\r\n            this.positionX = 0;\r\n        }\r\n    }\r\n    accelerate(){\r\n        this.velocity += this.acceleration;\r\n    }\r\n    jump(){\r\n        \r\n    }\r\n    draw(){\r\n        push();\r\n        stroke(150);\r\n        strokeWeight(2);\r\n        noFill();\r\n        translate (this.positionX, height - this.positionY);\r\n        ellipse(0,0,40);\r\n        pop();\r\n    }\r\n}\r\n\r\nfunction initializeCharacter(){\r\n    mainCharacter = new Character(45, 285);\r\n}\r\n\r\nfunction drawCharacter (){\r\n    mainCharacter.draw();\r\n}\r\n\r\nfunction setup(){\r\n    createCanvas(600, 800);\r\n    initializeCharacter();\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    gameWindow();\r\n    drawCharacter();\r\n}"
   },
   {
     "kind": 1,
@@ -42,16 +42,26 @@
   {
     "kind": 2,
     "language": "javascript",
-    "value": "let visiblePlatforms = [];\r\n\r\nclass Platform{\r\n    constructor(x, y, gap){\r\n        this.centerX = x ;\r\n        this.centerY = y ;\r\n        this.gapWidth = gap;\r\n    }\r\n    draw(){\r\n        push();\r\n        translate (this.centerX, this.centerY);\r\n        stroke(100);\r\n        noFill();\r\n        rect(-(this.gapWidth / 2) - 600, -20, 600, 40, 10);\r\n        rect(+(this.gapWidth / 2), -20, 600, 40, 10);\r\n        pop();  \r\n    }\r\n}\r\n\r\nfunction initializePlatforms(){\r\n    for(let iterator = 1; iterator <= 6; iterator++){\r\n        visiblePlatforms.push(new Platform(Math.floor(Math.random() * (width - 220)) + 100, Math.floor(height * iterator / 5) - 240, Math.floor(Math.random() * 40) + 80));\r\n    }\r\n}\r\n\r\nfunction drawPlatforms(){\r\n    for(let platform of visiblePlatforms){\r\n        platform.draw();\r\n    }\r\n}\r\n\r\nfunction setup(){\r\n    createCanvas(600, 800);\r\n    initializePlatforms();\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    drawPlatforms();\r\n    gameWindow();\r\n    drawCharacter(45,285);\r\n}"
+    "value": "let visiblePlatforms = [];\r\n\r\nclass Platform{\r\n    constructor(x, y, gap){\r\n        this.centerX = x ;\r\n        this.centerY = y ;\r\n        this.gapWidth = gap;\r\n        this.verticalVelocity = 8;\r\n    }\r\n\r\n    moveDown(){\r\n        this.centerY += this.verticalVelocity;\r\n    }\r\n\r\n    moveUp(){\r\n        this.centerY -= this.verticalVelocity;\r\n    }\r\n\r\n    draw(){\r\n        push();\r\n        translate (this.centerX, this.centerY);\r\n        stroke(100);\r\n        noFill();\r\n        rect(-(this.gapWidth / 2) - 600, -20, 600, 40, 10);\r\n        rect(+(this.gapWidth / 2), -20, 600, 40, 10);\r\n        pop();  \r\n    }\r\n}\r\n\r\nfunction initializePlatforms(){\r\n    for(let iterator = 1; iterator <= 6; iterator++){\r\n        visiblePlatforms.push(new Platform(Math.floor(Math.random() * (width - 220)) + 100, Math.floor(height * iterator / 5) - 240, Math.floor(Math.random() * 40) + 80));\r\n    }\r\n}\r\n\r\nfunction drawPlatforms(){\r\n    for(let platform of visiblePlatforms){\r\n        platform.draw();\r\n    }\r\n}\r\n\r\nfunction setup(){\r\n    createCanvas(600, 800);\r\n    initializePlatforms();\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    drawPlatforms();\r\n    gameWindow();\r\n    drawCharacter(45,285);\r\n}"
   },
   {
     "kind": 1,
     "language": "markdown",
-    "value": "**5. Get the Character and Platforms to Move**"
+    "value": "**5. Get the Character to Move**"
   },
   {
     "kind": 2,
     "language": "javascript",
     "value": "function setup(){\r\n    createCanvas(600, 800);\r\n    initializePlatforms();\r\n    initializeCharacter();\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    drawPlatforms();\r\n    mainCharacter.move();\r\n    drawCharacter();\r\n    gameWindow();\r\n\r\n}"
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "**6. Make the Character Jump**"
+  },
+  {
+    "kind": 2,
+    "language": "javascript",
+    "value": "let gameState = \"running\";\r\nlet animationFrame = 0;\r\n\r\nfunction checkInput(){\r\n    if(keyIsPressed){\r\n        if(key === \" \"){\r\n            switch(gameState){\r\n                case \"start\":\r\n                    break;\r\n                case \"running\":\r\n                    gameState = \"jumping\";\r\n                    break;\r\n                case \"jumping\":\r\n                    break;\r\n                case \"end\":\r\n                    break;\r\n                default:\r\n                    break;\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\nfunction setup(){\r\n    createCanvas(600, 800);\r\n    initializePlatforms();\r\n    initializeCharacter();\r\n}\r\n\r\nfunction draw(){\r\n    switch(gameState){\r\n        case \"start\":\r\n            break;\r\n        case \"running\":\r\n            background(20);\r\n            drawPlatforms();\r\n            mainCharacter.move();\r\n            drawCharacter();\r\n            gameWindow();\r\n            break;\r\n        case \"jumping\":\r\n            background(20);\r\n            for(let platform of visiblePlatforms){\r\n                platform.moveDown();\r\n            }\r\n            drawPlatforms();\r\n            mainCharacter.move();            \r\n            drawCharacter();\r\n            gameWindow();\r\n            animationFrame++;\r\n            if(animationFrame == 20){\r\n                gameState = \"running\";\r\n                animationFrame = 0;\r\n                visiblePlatforms.pop();\r\n                visiblePlatforms.unshift(new Platform(Math.floor(Math.random() * (width - 220)) + 100, Math.floor(height / 5) - 240, Math.floor(Math.random() * 40) + 80));\r\n            }\r\n            break;\r\n        case \"end\":\r\n            break;\r\n        default:\r\n            break;\r\n    }\r\n    checkInput();\r\n}"
   }
 ]
