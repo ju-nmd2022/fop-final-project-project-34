@@ -32,7 +32,7 @@
   {
     "kind": 2,
     "language": "javascript",
-    "value": "let mainCharacter;\r\n\r\nclass Character{\r\n    constructor(x, y){\r\n        this.positionX = x;\r\n        this.positionY = y;\r\n        this.velocity = 0.2;\r\n        this.acceleration = 0;\r\n    }\r\n    move(){\r\n        this.positionX += this.velocity;\r\n    }\r\n    accelerate(){\r\n        this.velocity += this.acceleration;\r\n    }\r\n    jump(){\r\n        \r\n    }\r\n    draw(){\r\n        push();\r\n        stroke(150);\r\n        strokeWeight(2);\r\n        noFill();\r\n        translate (this.positionX, height - this.positionY);\r\n        ellipse(0,0,40);\r\n        pop();\r\n    }\r\n}\r\n\r\nfunction initializeCharacter(){\r\n    mainCharacter = new Character(45, 285);\r\n}\r\n\r\nfunction drawCharacter (){\r\n    mainCharacter.draw();\r\n}\r\n\r\nfunction setup(){\r\n    createCanvas(600, 800);\r\n    initializeCharacter();\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    gameWindow();\r\n    drawCharacter();\r\n}"
+    "value": "let mainCharacter;\r\n\r\nclass Character{\r\n    constructor(x, y){\r\n        this.positionX = x;\r\n        this.positionY = y;\r\n        this.velocity = 1.2;\r\n        this.acceleration = 0;\r\n    }\r\n    move(){\r\n        this.positionX += this.velocity;\r\n        if(this.positionX > width + 20){\r\n            this.positionX = 0;\r\n        }\r\n    }\r\n    accelerate(){\r\n        this.velocity += this.acceleration;\r\n    }\r\n    jump(){\r\n        \r\n    }\r\n    draw(){\r\n        push();\r\n        stroke(150);\r\n        strokeWeight(2);\r\n        noFill();\r\n        translate (this.positionX, height - this.positionY);\r\n        ellipse(0,0,40);\r\n        pop();\r\n    }\r\n}\r\n\r\nfunction initializeCharacter(){\r\n    mainCharacter = new Character(45, 285);\r\n}\r\n\r\nfunction drawCharacter (){\r\n    mainCharacter.draw();\r\n}\r\n\r\nfunction setup(){\r\n    createCanvas(600, 800);\r\n    initializeCharacter();\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    gameWindow();\r\n    drawCharacter();\r\n}"
   },
   {
     "kind": 1,
@@ -52,6 +52,6 @@
   {
     "kind": 2,
     "language": "javascript",
-    "value": "function setup(){\r\n    createCanvas(600, 800);\r\n    initializePlatforms();\r\n    initializeCharacter();\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    drawPlatforms();\r\n    gameWindow();\r\n    drawCharacter();\r\n}"
+    "value": "function setup(){\r\n    createCanvas(600, 800);\r\n    initializePlatforms();\r\n    initializeCharacter();\r\n}\r\n\r\nfunction draw(){\r\n    background(20);\r\n    drawPlatforms();\r\n    mainCharacter.move();\r\n    drawCharacter();\r\n    gameWindow();\r\n\r\n}"
   }
 ]
