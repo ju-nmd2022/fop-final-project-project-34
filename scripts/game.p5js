@@ -68,5 +68,10 @@
     "kind": 1,
     "language": "markdown",
     "value": "**7. Detect Collision with Platforms**"
+  },
+  {
+    "kind": 2,
+    "language": "javascript",
+    "value": "// Filled inside the previous code"
   }
 ]
