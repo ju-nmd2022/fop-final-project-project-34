@@ -1,5 +1,10 @@
 let developerMode = false;
 
+const localPrefix = "";
+const deployPrefix = "https://ju-nmd2022.github.io/fop-final-project-project-34/scripts/";
+
+let currentPrefix;
+
 let height = 800;
 let weight = 600;
 let mainCharacter;
@@ -12,13 +17,15 @@ let animationFrame = 0;
 let score = 0;
 let grace = 0;
 
+currentPrefix = developerMode ? localPrefix : deployPrefix;
+
 function preload() {
-  characterImages[0] = loadImage("/scripts/running.gif");
-  characterImages[1] = loadImage("/scripts/jumping.png");
-  characterImages[2] = loadImage("/scripts/idle.gif");
-  characterImages[3] = loadImage("/scripts/falling.png");
-  platformImage = loadImage("/scripts/platform.png");
-  backgroundImage = loadImage('/scripts/background.png');
+  characterImages[0] = loadImage(currentPrefix + "running.gif");
+  characterImages[1] = loadImage(currentPrefix + "jumping.png");
+  characterImages[2] = loadImage(currentPrefix + "idle.gif");
+  characterImages[3] = loadImage(currentPrefix + "falling.png");
+  platformImage = loadImage(currentPrefix + "platform.png");
+  backgroundImage = loadImage(currentPrefix + 'background.png');
 }
 
 class Character {
