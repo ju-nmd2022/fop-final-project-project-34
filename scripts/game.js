@@ -18,6 +18,7 @@ let animationFrame = 0;
 let score = 0;
 let grace = 0;
 let jumpGrace = 0;
+const gravity = 1.06;
 
 currentPrefix = developerMode ? localPrefix : deployPrefix;
 
@@ -35,7 +36,7 @@ class Character {
     this.positionX = x;
     this.positionY = y;
     this.velocity = 5;
-    this.acceleration = 0;
+    this.verticalVelocity = -2.9;
   }
   move() {
     this.positionX += this.velocity;
@@ -44,9 +45,11 @@ class Character {
     }
   }
   accelerate() {
-    this.velocity += this.acceleration;
+    this.verticalVelocity *= gravity;
   }
-  jump() {}
+  fall() {
+    this.positionY += this.verticalVelocity;
+  }
   draw(action) {
     push();
     // stroke(150);
@@ -296,6 +299,13 @@ function draw() {
       showScore();
       break;
     case "end":
+      background(20);
+      gameWindow();
+      drawPlatforms();
+      showScore();
+      mainCharacter.accelerate();
+      mainCharacter.fall();
+      drawCharacter("falling");
       gameOver();
       break;
     default:
