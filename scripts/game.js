@@ -1,3 +1,5 @@
+let developerMode = false;
+
 let height = 800;
 let weight = 600;
 let mainCharacter;
@@ -111,7 +113,8 @@ function initializeCharacter() {
 
 function setup() {
   frameRate(60);
-  createCanvas(600, 800);
+  let canvas = createCanvas(600, 800);
+  if(!developerMode) canvas.parent("gameWindow");
   initializePlatforms();
   initializeCharacter();
 }
