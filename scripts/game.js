@@ -191,7 +191,8 @@ function checkInput() {
 function showScore() {
   push();
   fill(155);
-  textFont(globalTypeface);
+  if(!developerMode)
+    textFont(globalTypeface);
   textSize(32);
   text(score, 286, 150);
   pop();
@@ -199,27 +200,29 @@ function showScore() {
 
 function instructions() {
   push();
-  fill(20);
-  stroke(125);
-  rect(150, 150, 300, 200);
-  fill(200);
-  textFont(globalTypeface);
+  fill('rgba(20, 20, 20, 0.9)');
+  noStroke();
+  rect(0, 150, 600, 200);
+  fill(180);
+  if(!developerMode)
+    textFont(globalTypeface);
   textSize(36);
-  text("Press to Start", 190, 260);
+  text("Press to Start", 160, 260);
   pop();
 }
 
 function gameOver() {
   push();
-  fill(20);
-  stroke(125);
-  rect(100, 100, 400, 250);
-  fill(200);
-  textFont(globalTypeface);
+  fill('rgba(20, 20, 20, 0.9)');
+  noStroke();
+  rect(0, 100, 600, 250);
+  fill(180);
+  if(!developerMode)
+    textFont(globalTypeface);
   textSize(30);
-  text(score + ' jumps', 250, 200);
+  text(score + ' jumps', 220, 200);
   textSize(20);
-  text("Press To Try Again", 220, 300);
+  text("Press To Try Again", 200, 300);
   pop();
 }
 
@@ -306,7 +309,6 @@ function draw() {
       background(20);
       gameWindow();
       drawPlatforms();
-      showScore();
       mainCharacter.accelerate();
       mainCharacter.fall();
       drawCharacter("falling");
