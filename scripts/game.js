@@ -1,7 +1,8 @@
 let developerMode = true;
 
 const localPrefix = "";
-const deployPrefix = "https://ju-nmd2022.github.io/fop-final-project-project-34/scripts/";
+const deployPrefix =
+  "https://ju-nmd2022.github.io/fop-final-project-project-34/scripts/";
 
 let currentPrefix;
 
@@ -26,7 +27,7 @@ function preload() {
   characterImages[2] = loadImage(currentPrefix + "idle.gif");
   characterImages[3] = loadImage(currentPrefix + "falling.png");
   platformImage = loadImage(currentPrefix + "platform.png");
-  backgroundImage = loadImage(currentPrefix + 'background.png');
+  backgroundImage = loadImage(currentPrefix + "background.png");
 }
 
 class Character {
@@ -122,24 +123,24 @@ function initializeCharacter() {
 function setup() {
   frameRate(60);
   let canvas = createCanvas(600, 800);
-  if(!developerMode) canvas.parent("gameWindow");
+  if (!developerMode) canvas.parent("gameWindow");
   initializePlatforms();
   initializeCharacter();
 }
 
 function gameWindow() {
   push();
-//   noStroke();
-//   fill(20);
-//   rect(0, 0, width, 20);
-//   rect(0, 0, 20, height);
-//   rect(580, 0, 20, height);
-//   rect(0, 780, width, 20);
-//   stroke(125);
-//   strokeWeight(1);
-//   noFill();
-//   rect(10, 10, 580, 780);
-//   rect(20, 20, 560, 760);
+  //   noStroke();
+  //   fill(20);
+  //   rect(0, 0, width, 20);
+  //   rect(0, 0, 20, height);
+  //   rect(580, 0, 20, height);
+  //   rect(0, 780, width, 20);
+  //   stroke(125);
+  //   strokeWeight(1);
+  //   noFill();
+  //   rect(10, 10, 580, 780);
+  //   rect(20, 20, 560, 760);
   image(backgroundImage, 0, 0, 600, 800);
   pop();
 }
@@ -232,10 +233,15 @@ function draw() {
       mainCharacter.move();
       drawCharacter("running");
       showScore();
-      if (mainCharacter.positionX > 40 + visiblePlatforms[4].centerX - visiblePlatforms[4].gapWidth / 2 && mainCharacter.positionX < visiblePlatforms[4].centerX + visiblePlatforms[4].gapWidth / 2 - 40) {
-        if(jumpGrace === 0) gameState = "end";
+      if (
+        mainCharacter.positionX >
+          40 + visiblePlatforms[4].centerX - visiblePlatforms[4].gapWidth / 2 &&
+        mainCharacter.positionX <
+          visiblePlatforms[4].centerX + visiblePlatforms[4].gapWidth / 2 - 40
+      ) {
+        if (jumpGrace === 0) gameState = "end";
         // In this case we have lost
-        else{
+        else {
           jumpGrace--;
         }
         background(20);
@@ -256,6 +262,7 @@ function draw() {
       drawCharacter("jumping");
       animationFrame++;
       if (animationFrame == 20) {
+        mainCharacter.velocity *= 1.02;
         jumpGrace = 4;
         gameState = "running";
         animationFrame = 0;
@@ -272,7 +279,11 @@ function draw() {
       }
       if (
         animationFrame > 15 &&
-        (mainCharacter.positionX < visiblePlatforms[3].centerX - visiblePlatforms[3].gapWidth / 2 || mainCharacter.positionX > visiblePlatforms[3].centerX + visiblePlatforms[3].gapWidth / 2)) {
+        (mainCharacter.positionX <
+          visiblePlatforms[3].centerX - visiblePlatforms[3].gapWidth / 2 ||
+          mainCharacter.positionX >
+            visiblePlatforms[3].centerX + visiblePlatforms[3].gapWidth / 2)
+      ) {
         gameState = "end";
         animationFrame = 0;
         // In this case we have lost
