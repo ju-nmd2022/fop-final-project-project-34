@@ -13,12 +13,12 @@ let score = 0;
 let grace = 0;
 
 function preload() {
-  characterImages[0] = loadImage("running.gif");
-  characterImages[1] = loadImage("jumping.png");
-  characterImages[2] = loadImage("idle.gif");
-  characterImages[3] = loadImage("falling.png");
-  platformImage = loadImage("platform.png");
-  backgroundImage = loadImage('background.png');
+  characterImages[0] = loadImage("/scripts/running.gif");
+  characterImages[1] = loadImage("/scripts/jumping.png");
+  characterImages[2] = loadImage("/scripts/idle.gif");
+  characterImages[3] = loadImage("/scripts/falling.png");
+  platformImage = loadImage("/scripts/platform.png");
+  backgroundImage = loadImage('/scripts/background.png');
 }
 
 class Character {
@@ -88,8 +88,8 @@ class Platform {
     // noFill();
     // rect(-(this.gapWidth / 2) - 600, -20, 600, 40, 10);
     // rect(+(this.gapWidth / 2), -20, 600, 40, 10);
-    image(platformImage, -(this.gapWidth / 2) - 600, -20, 600, 40);
-    image(platformImage, +(this.gapWidth / 2), -20, 600, 40);
+    image(platformImage, -(this.gapWidth / 2) - 600, -20, 620, 40);
+    image(platformImage, +(this.gapWidth / 2), -20, 620, 40);
     pop();
   }
 }
