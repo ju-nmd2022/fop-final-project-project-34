@@ -1,3 +1,5 @@
+let height = 800;
+let weight = 600;
 let mainCharacter;
 let characterImages = [];
 let visiblePlatforms = [];
@@ -110,13 +112,13 @@ function gameWindow(){
     fill(20);
     rect(0, 0, width, 20);
     rect(0, 0, 20, height);
-    rect(width - 20, 0, 20, height);
-    rect(0, height - 20, width, 20);
+    rect(580, 0, 20, height);
+    rect(0, 780, width, 20);
     stroke(125);
     strokeWeight(1);
     noFill();
-    rect(10, 10, width - 20, height - 20);
-    rect(20, 20, width - 40, height - 40);
+    rect(10, 10, 580, 780);
+    rect(20, 20, 560, 760);
     pop();
 }
 
