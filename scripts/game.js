@@ -84,8 +84,8 @@ class Platform {
     // noFill();
     // rect(-(this.gapWidth / 2) - 600, -20, 600, 40, 10);
     // rect(+(this.gapWidth / 2), -20, 600, 40, 10);
-    image(platformImages[4], -(this.gapWidth / 2) - 600, -20, 600, 40, 10);
-    image(platformImages[4], +(this.gapWidth / 2), -20, 600, 40, 10);
+    image(platformImages[4], -(this.gapWidth / 2) - 600, -20, 600, 40);
+    image(platformImages[4], +(this.gapWidth / 2), -20, 600, 40);
     pop();
   }
 }
