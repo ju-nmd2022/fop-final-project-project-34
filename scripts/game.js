@@ -1,4 +1,4 @@
-let developerMode = false;
+let developerMode = true;
 
 const localPrefix = "";
 const deployPrefix = "https://ju-nmd2022.github.io/fop-final-project-project-34/scripts/";
@@ -54,16 +54,16 @@ class Character {
     // ellipse(0, 0, 40);
     switch (action) {
       case "running":
-        image(characterImages[0], -25, -35, 55, 55);
+        image(characterImages[0], -25, -50, 75, 75);
         break;
       case "jumping":
-        image(characterImages[1], -25, -35, 45, 55);
+        image(characterImages[1], -25, -35, 55, 75);
         break;
       case "idle":
-        image(characterImages[2], -25, -35, 30, 55);
+        image(characterImages[2], -25, -35, 55, 75);
         break;
       case "falling":
-        image(characterImages[3], -25, -35, 55, 55);
+        image(characterImages[3], -25, -1 5, 55, 55);
         break;
       default:
         break;
