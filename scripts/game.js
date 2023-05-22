@@ -12,6 +12,7 @@ let mainCharacter;
 const characterImages = [];
 let platformImage;
 let backgroundImage;
+let globalTypeface;
 let visiblePlatforms = [];
 let gameState = "start";
 let animationFrame = 0;
@@ -29,6 +30,7 @@ function preload() {
   characterImages[3] = loadImage(currentPrefix + "falling.png");
   platformImage = loadImage(currentPrefix + "platform.png");
   backgroundImage = loadImage(currentPrefix + "background.png");
+  globalTypeface = loadFont(currentPrefix + 'typeface.otf');
 }
 
 class Character {
@@ -160,7 +162,7 @@ function drawPlatforms() {
 
 function checkInput() {
   if (keyIsPressed || touches.length >= 1) {
-    if (key === " " || touches.length >= 1) {
+    // if (key === " " || touches.length >= 1) {
       switch (gameState) {
         case "start":
           gameState = "running";
@@ -182,14 +184,14 @@ function checkInput() {
         default:
           break;
       }
-    }
+    // }
   }
 }
 
 function showScore() {
   push();
   fill(155);
-  textFont("Helvetica");
+  textFont(globalTypeface);
   textSize(32);
   text(score, 286, 150);
   pop();
@@ -201,8 +203,9 @@ function instructions() {
   stroke(125);
   rect(150, 150, 300, 200);
   fill(200);
+  textFont(globalTypeface);
   textSize(36);
-  text("Press Space", 200, 260);
+  text("Press to Start", 190, 260);
   pop();
 }
 
@@ -212,10 +215,11 @@ function gameOver() {
   stroke(125);
   rect(100, 100, 400, 250);
   fill(200);
+  textFont(globalTypeface);
   textSize(30);
-  text("Game Over", 230, 200);
+  text(score + ' jumps', 250, 200);
   textSize(20);
-  text("Press Space To Try Again", 190, 300);
+  text("Press To Try Again", 220, 300);
   pop();
 }
 
