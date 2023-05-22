@@ -1,4 +1,4 @@
-let developerMode = true;
+let developerMode = false;
 
 const localPrefix = "";
 const deployPrefix =
