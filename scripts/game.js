@@ -1,8 +1,9 @@
 let height = 800;
 let weight = 600;
 let mainCharacter;
-let characterImages = [];
-let platformImages = [];
+const characterImages = [];
+let platformImage;
+let backgroundImage;
 let visiblePlatforms = [];
 let gameState = "start";
 let animationFrame = 0;
@@ -14,7 +15,8 @@ function preload() {
   characterImages[1] = loadImage("jumping.png");
   characterImages[2] = loadImage("idle.gif");
   characterImages[3] = loadImage("falling.png");
-  platformImages[4] = loadImage("platform.png");
+  platformImage = loadImage("platform.png");
+  backgroundImage = loadImage('background.png');
 }
 
 class Character {
@@ -84,8 +86,8 @@ class Platform {
     // noFill();
     // rect(-(this.gapWidth / 2) - 600, -20, 600, 40, 10);
     // rect(+(this.gapWidth / 2), -20, 600, 40, 10);
-    image(platformImages[4], -(this.gapWidth / 2) - 600, -20, 600, 40, 10);
-    image(platformImages[4], +(this.gapWidth / 2), -20, 600, 40, 10);
+    image(platformImage, -(this.gapWidth / 2) - 600, -20, 600, 40);
+    image(platformImage, +(this.gapWidth / 2), -20, 600, 40);
     pop();
   }
 }
@@ -96,7 +98,7 @@ function initializePlatforms() {
       new Platform(
         Math.floor(Math.random() * (width - 220)) + 100,
         Math.floor((height * iterator) / 5) - 240,
-        Math.floor(Math.random() * 40) + 80
+        Math.floor(Math.random() * 40) + 100
       )
     );
   }
@@ -116,17 +118,18 @@ function setup() {
 
 function gameWindow() {
   push();
-  noStroke();
-  fill(20);
-  rect(0, 0, width, 20);
-  rect(0, 0, 20, height);
-  rect(580, 0, 20, height);
-  rect(0, 780, width, 20);
-  stroke(125);
-  strokeWeight(1);
-  noFill();
-  rect(10, 10, 580, 780);
-  rect(20, 20, 560, 760);
+//   noStroke();
+//   fill(20);
+//   rect(0, 0, width, 20);
+//   rect(0, 0, 20, height);
+//   rect(580, 0, 20, height);
+//   rect(0, 780, width, 20);
+//   stroke(125);
+//   strokeWeight(1);
+//   noFill();
+//   rect(10, 10, 580, 780);
+//   rect(20, 20, 560, 760);
+  image(backgroundImage, 0, 0, 600, 800);
   pop();
 }
 
@@ -205,18 +208,18 @@ function draw() {
   switch (gameState) {
     case "start":
       background(20);
+      gameWindow();
       drawPlatforms();
       mainCharacter.move();
       drawCharacter("running");
-      gameWindow();
       if (grace === 0) instructions();
       break;
     case "running":
       background(20);
+      gameWindow();
       drawPlatforms();
       mainCharacter.move();
       drawCharacter("running");
-      gameWindow();
       showScore();
       if (
         mainCharacter.positionX >
@@ -230,13 +233,13 @@ function draw() {
       break;
     case "jumping":
       background(20);
+      gameWindow();
       for (let platform of visiblePlatforms) {
         platform.moveDown();
       }
       drawPlatforms();
       mainCharacter.move();
       drawCharacter("jumping");
-      gameWindow();
       animationFrame++;
       if (animationFrame == 20) {
         gameState = "running";
@@ -246,22 +249,23 @@ function draw() {
           new Platform(
             Math.floor(Math.random() * (width - 220)) + 100,
             Math.floor(height / 5) - 240,
-            Math.floor(Math.random() * 40) + 80
+            Math.floor(Math.random() * 40) + 100
           )
         );
         score++;
         break;
       }
       if (
-        animationFrame > 10 &&
-        (mainCharacter.positionX <
-          10 + visiblePlatforms[3].centerX - visiblePlatforms[3].gapWidth / 2 ||
-          mainCharacter.positionX >
-            visiblePlatforms[3].centerX + visiblePlatforms[3].gapWidth / 2 - 10)
-      ) {
+        animationFrame > 15 &&
+        (mainCharacter.positionX < visiblePlatforms[3].centerX - visiblePlatforms[3].gapWidth / 2 || mainCharacter.positionX > visiblePlatforms[3].centerX + visiblePlatforms[3].gapWidth / 2)) {
         gameState = "end";
         animationFrame = 0;
         // In this case we have lost
+        background(20);
+        gameWindow();
+        drawPlatforms();
+        drawCharacter("falling");
+        showScore();
       }
       showScore();
       break;
