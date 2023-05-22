@@ -10,7 +10,7 @@ let grace = 0;
 
 function preload(){
     characterImages[0] = loadImage('running.gif');
-    characterImages[1] = loadImage('jumping.gif');
+    characterImages[1] = loadImage('jumping.png');
     characterImages[2] = loadImage('idle.gif');
     characterImages[3] = loadImage('falling.png');
 }
@@ -46,7 +46,7 @@ class Character{
                 image(characterImages[0], -25, -35, 55, 55);
                 break;
             case 'jumping':
-                image(characterImages[1], -25, -35, 55, 55);
+                image(characterImages[1], -25, -35, 45, 55);
                 break;
             case 'idle':
                 image(characterImages[2], -25, -35, 30, 55);
