@@ -190,10 +190,10 @@ function checkInput() {
 
 function showScore() {
   push();
-  fill(155);
+  fill(55);
   if(!developerMode)
     textFont(globalTypeface);
-  textSize(32);
+  textSize(48);
   text(score, 286, 150);
   pop();
 }
@@ -207,7 +207,7 @@ function instructions() {
   if(!developerMode)
     textFont(globalTypeface);
   textSize(36);
-  text("Press to Start", 160, 260);
+  text("Press to Start", 150, 260);
   pop();
 }
 
@@ -220,9 +220,9 @@ function gameOver() {
   if(!developerMode)
     textFont(globalTypeface);
   textSize(30);
-  text(score + ' jumps', 220, 200);
+  text(score + ' jumps', 230, 200);
   textSize(20);
-  text("Press To Try Again", 200, 300);
+  text("Press To Try Again", 195, 300);
   pop();
 }
 
