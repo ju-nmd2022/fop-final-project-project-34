@@ -1,4 +1,4 @@
-let developerMode = true;
+let developerMode = false;
 
 const localPrefix = "";
 const deployPrefix = "https://ju-nmd2022.github.io/fop-final-project-project-34/scripts/";
