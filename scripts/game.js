@@ -1,4 +1,4 @@
-let developerMode = false;
+let developerMode = true;
 
 const localPrefix = "";
 const deployPrefix = "https://ju-nmd2022.github.io/fop-final-project-project-34/scripts/";
@@ -16,6 +16,7 @@ let gameState = "start";
 let animationFrame = 0;
 let score = 0;
 let grace = 0;
+let jumpGrace = 0;
 
 currentPrefix = developerMode ? localPrefix : deployPrefix;
 
@@ -57,13 +58,13 @@ class Character {
         image(characterImages[0], -25, -50, 75, 75);
         break;
       case "jumping":
-        image(characterImages[1], -25, -35, 55, 75);
+        image(characterImages[1], -25, -35, 55, 85);
         break;
       case "idle":
         image(characterImages[2], -25, -35, 55, 75);
         break;
       case "falling":
-        image(characterImages[3], -25, -1 5, 55, 55);
+        image(characterImages[3], -25, -15, 55, 55);
         break;
       default:
         break;
@@ -231,14 +232,17 @@ function draw() {
       mainCharacter.move();
       drawCharacter("running");
       showScore();
-      if (
-        mainCharacter.positionX >
-          40 + visiblePlatforms[4].centerX - visiblePlatforms[4].gapWidth / 2 &&
-        mainCharacter.positionX <
-          visiblePlatforms[4].centerX + visiblePlatforms[4].gapWidth / 2 - 40
-      ) {
-        gameState = "end";
+      if (mainCharacter.positionX > 40 + visiblePlatforms[4].centerX - visiblePlatforms[4].gapWidth / 2 && mainCharacter.positionX < visiblePlatforms[4].centerX + visiblePlatforms[4].gapWidth / 2 - 40) {
+        if(jumpGrace === 0) gameState = "end";
         // In this case we have lost
+        else{
+          jumpGrace--;
+        }
+        background(20);
+        gameWindow();
+        drawPlatforms();
+        drawCharacter("falling");
+        showScore();
       }
       break;
     case "jumping":
@@ -252,6 +256,7 @@ function draw() {
       drawCharacter("jumping");
       animationFrame++;
       if (animationFrame == 20) {
+        jumpGrace = 4;
         gameState = "running";
         animationFrame = 0;
         visiblePlatforms.pop();
