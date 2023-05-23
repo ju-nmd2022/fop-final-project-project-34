@@ -190,10 +190,12 @@ function checkInput() {
 
 function showScore() {
   push();
-  fill(55);
   if(!developerMode)
     textFont(globalTypeface);
   textSize(48);
+  fill(215, 170, 18);
+  stroke(55);
+  strokeWeight(3);
   text(score, 286, 150);
   pop();
 }
@@ -201,9 +203,10 @@ function showScore() {
 function instructions() {
   push();
   fill('rgba(20, 20, 20, 0.9)');
-  noStroke();
+  stroke(180);
+  strokeWeight(0.5);
   rect(0, 150, 600, 200);
-  fill(180);
+  fill(215, 170, 18);
   if(!developerMode)
     textFont(globalTypeface);
   textSize(36);
@@ -214,9 +217,10 @@ function instructions() {
 function gameOver() {
   push();
   fill('rgba(20, 20, 20, 0.9)');
-  noStroke();
+  stroke(180);
+  strokeWeight(0.5);
   rect(0, 100, 600, 250);
-  fill(180);
+  fill(215, 170, 18);
   if(!developerMode)
     textFont(globalTypeface);
   textSize(30);
