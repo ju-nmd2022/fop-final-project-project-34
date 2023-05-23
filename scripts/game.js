@@ -1,4 +1,4 @@
-let developerMode = false;
+let developerMode = true;
 
 const localPrefix = "";
 const deployPrefix =
@@ -30,7 +30,7 @@ function preload() {
   characterImages[3] = loadImage(currentPrefix + "falling.png");
   platformImage = loadImage(currentPrefix + "platform.png");
   backgroundImage = loadImage(currentPrefix + "background.png");
-  globalTypeface = loadFont(currentPrefix + 'typeface.otf');
+  globalTypeface = loadFont(currentPrefix + "typeface.otf");
 }
 
 class Character {
@@ -163,35 +163,34 @@ function drawPlatforms() {
 function checkInput() {
   if (keyIsPressed || touches.length >= 1) {
     // if (key === " " || touches.length >= 1) {
-      switch (gameState) {
-        case "start":
-          gameState = "running";
-          break;
-        case "running":
-          if (grace === 0) gameState = "jumping";
-          else grace--;
-          break;
-        case "jumping":
-          break;
-        case "end":
-          gameState = "start";
-          score = 0;
-          visiblePlatforms = [];
-          initializePlatforms();
-          initializeCharacter();
-          grace = 5;
-          break;
-        default:
-          break;
-      }
+    switch (gameState) {
+      case "start":
+        gameState = "running";
+        break;
+      case "running":
+        if (grace === 0) gameState = "jumping";
+        else grace--;
+        break;
+      case "jumping":
+        break;
+      case "end":
+        gameState = "start";
+        score = 0;
+        visiblePlatforms = [];
+        initializePlatforms();
+        initializeCharacter();
+        grace = 5;
+        break;
+      default:
+        break;
+    }
     // }
   }
 }
 
 function showScore() {
   push();
-  if(!developerMode)
-    textFont(globalTypeface);
+  if (!developerMode) textFont(globalTypeface);
   textSize(48);
   fill(215, 170, 18);
   stroke(55);
@@ -202,29 +201,29 @@ function showScore() {
 
 function instructions() {
   push();
-  fill('rgba(20, 20, 20, 0.9)');
+  fill("rgba(20, 20, 20, 0.9)");
   stroke(180);
   strokeWeight(0.5);
   rect(0, 150, 600, 200);
   fill(215, 170, 18);
-  if(!developerMode)
-    textFont(globalTypeface);
+  if (!developerMode) textFont(globalTypeface);
   textSize(36);
   text("Press to Start", 150, 260);
   pop();
 }
 
 function gameOver() {
+  saveScore();
   push();
-  fill('rgba(20, 20, 20, 0.9)');
+  fill("rgba(20, 20, 20, 0.9)");
   stroke(180);
   strokeWeight(0.5);
   rect(0, 100, 600, 250);
   fill(215, 170, 18);
-  if(!developerMode)
-    textFont(globalTypeface);
+  if (!developerMode) textFont(globalTypeface);
   textSize(30);
-  text(score + ' jumps', 230, 200);
+  text(score + " jumps", 230, 200);
+  text(" High Score:" + localStorage.highScore, 200, 250);
   textSize(20);
   text("Press To Try Again", 195, 300);
   pop();
@@ -322,4 +321,14 @@ function draw() {
       break;
   }
   checkInput();
+}
+
+function saveScore() {
+  if (localStorage.highScore) {
+    if (parseInt(localStorage.highScore) < score) {
+      localStorage.highScore = score;
+    }
+  } else {
+    localStorage.highScore = score;
+  }
 }
