@@ -213,7 +213,6 @@ function instructions() {
 }
 
 function gameOver() {
-  saveScore();
   push();
   fill("rgba(20, 20, 20, 0.9)");
   stroke(180);
@@ -222,8 +221,7 @@ function gameOver() {
   fill(215, 170, 18);
   if (!developerMode) textFont(globalTypeface);
   textSize(30);
-  text(score + " jumps", 230, 200);
-  text(" High Score:" + localStorage.highScore, 200, 250);
+  saveScore();
   textSize(20);
   text("Press To Try Again", 195, 300);
   pop();
@@ -327,8 +325,12 @@ function saveScore() {
   if (localStorage.highScore) {
     if (parseInt(localStorage.highScore) < score) {
       localStorage.highScore = score;
+      text("New Best: " + localStorage.highScore, 200, 200);
+    } else {
+      text("Your Best: " + localStorage.highScore, 200, 200);
     }
   } else {
     localStorage.highScore = score;
+    text("Your Best: " + localStorage.highScore, 200, 200);
   }
 }
