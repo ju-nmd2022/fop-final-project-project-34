@@ -331,6 +331,6 @@ function saveScore() {
     }
   } else {
     localStorage.highScore = score;
-    text("Your Best: " + localStorage.highScore, 200, 200);
+    text("Your Best:" + localStorage.highScore, 200, 200);
   }
 }
