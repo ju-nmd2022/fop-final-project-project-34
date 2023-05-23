@@ -325,12 +325,12 @@ function saveScore() {
   if (localStorage.highScore) {
     if (parseInt(localStorage.highScore) < score) {
       localStorage.highScore = score;
-      text("New Best: " + localStorage.highScore, 195, 200);
+      text("New Best: " + localStorage.highScore, 185, 200);
     } else {
-      text("Your Best: " + localStorage.highScore, 195, 200);
+      text("Your Best: " + localStorage.highScore, 185, 200);
     }
   } else {
     localStorage.highScore = score;
-    text("Your Best:" + localStorage.highScore, 195, 200);
+    text("Your Best:" + localStorage.highScore, 185, 200);
   }
 }
